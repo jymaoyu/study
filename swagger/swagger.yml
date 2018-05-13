@@ -1,0 +1,145 @@
+swagger: "2.0"
+info:
+  title: mobile API
+  description: mobile has every tool to get any job done, so codename for the new
+    mobile APIs.
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /agency/:
+    get:
+      tags:
+      - agency
+      description: 返回所有的agency数据
+      operationId: TestController.获得所有agency
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Agency'
+  /agency/{Ano}:
+    get:
+      tags:
+      - agency
+      description: 返回某agency数据
+      operationId: TestController.获得一个agency
+      parameters:
+      - in: path
+        name: Ano
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Agency'
+    delete:
+      tags:
+      - agency
+      description: 删除agency数据
+      operationId: TestController.删除一个agency
+      parameters:
+      - in: path
+        name: Ano
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Agency'
+  /agency/add:
+    post:
+      tags:
+      - agency
+      description: 添加agency的描述
+      operationId: TestController.添加agency
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Agency'
+      responses:
+        "200":
+          description: '{int} models.Agency.Ano'
+        "403":
+          description: body is empty
+  /agency/update:
+    post:
+      tags:
+      - agency
+      description: 修改agency的内容
+      operationId: TestController.修改agency
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Agency'
+      responses:
+        "200":
+          description: '{int} models.Agency'
+        "403":
+          description: body is empty
+definitions:
+  models.Agency:
+    title: Agency
+    type: object
+    properties:
+      Aname:
+        type: string
+      Ano:
+        type: string
+      Aphone:
+        type: string
+      Aremark:
+        type: string
+      Asex:
+        type: string
+  models.Object:
+    title: Object
+    type: object
+    properties:
+      ObjectId:
+        type: string
+      PlayerName:
+        type: string
+      Score:
+        type: integer
+        format: int64
+  models.Profile:
+    title: Profile
+    type: object
+    properties:
+      Address:
+        type: string
+      Age:
+        type: integer
+        format: int64
+      Email:
+        type: string
+      Gender:
+        type: string
+  models.User:
+    title: User
+    type: object
+    properties:
+      Id:
+        type: string
+      Password:
+        type: string
+      Profile:
+        $ref: '#/definitions/models.Profile'
+      Username:
+        type: string
